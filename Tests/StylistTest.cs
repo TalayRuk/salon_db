@@ -47,7 +47,7 @@ namespace Salon
     }
 
     [Fact]
-    public void T4_Save_AssignsIdToStylist()
+    public void T4_1_Save_AssignsIdToStylist()
     {
       Stylist testStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
       testStylist.Save();
@@ -57,6 +57,19 @@ namespace Salon
       int testId = testStylist.GetId();
 
       Assert.Equal(testId, result);
+    }
+
+    [Fact]
+    //Additional test for GetId as it was built and passed the test from the outset
+    public void T4_2_Save_AssignsIdToStylist()
+    {
+      Stylist testStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      testStylist.Save();
+
+      Stylist savedStylist = Stylist.GetAll()[0];
+      int result = savedStylist.GetId();
+
+      Assert.Equal(true, (result > 0));
     }
   }
 }
