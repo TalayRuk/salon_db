@@ -183,20 +183,13 @@ namespace Salon
       return foundStylist;
     }
 
-    public void Update(string newFirst, string newLast, string newExpertise)
+    public void Update(string newExpertise)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("UPDATE stylists SET first_name = @NewFirst, last_name = @NewLast, expertise = @NewExpertise WHERE id = @StylistId;", conn);
-
-      SqlParameter newFirstParameter = new SqlParameter();
-      newFirstParameter.ParameterName = "@NewFirst";
-      newFirstParameter.Value = newFirst;
-
-      SqlParameter newLastParameter = new SqlParameter();
-      newLastParameter.ParameterName = "@NewLast";
-      newLastParameter.Value = newLast;
+      //Could not determine how to account for multiple sql OUTPUT values in cmd - in case of future error
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET expertise = @NewExpertise OUTPUT INSERTED.expertise WHERE id = @StylistId;", conn);
 
       SqlParameter newExpertiseParameter = new SqlParameter();
       newExpertiseParameter.ParameterName = "@NewExpertise";
@@ -206,8 +199,6 @@ namespace Salon
       stylistIdParameter.ParameterName = "@StylistId";
       stylistIdParameter.Value = this.GetId();
 
-      cmd.Parameters.Add(newFirstParameter);
-      cmd.Parameters.Add(newLastParameter);
       cmd.Parameters.Add(newExpertiseParameter);
       cmd.Parameters.Add(stylistIdParameter);
 
@@ -215,9 +206,19 @@ namespace Salon
 
       while (rdr.Read())
       {
-        // this._firstName
+        this._expertise = rdr.GetString(0);
+        // this._lastName = rdr.GetString(2);
+        // this._expertise = rdr.GetString(3);
       }
 
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()

@@ -93,19 +93,15 @@ namespace Salon
       Stylist testStylist = new Stylist(firstName, lastName, expertise);
       testStylist.Save();
 
-      string newFirstName = "Yakul";
-      string newLastName = "Scizor";
       string newExpertise = "Lvl. 15 Grand Master";
 
-      testStylist.Update(newFirstName, newLastName, newExpertise);
+      testStylist.Update(newExpertise);
 
-      string resultFirst = testStylist.GetFirstName();
-      string resultLast = testStylist.GetLastName();
       string resultExpertise = testStylist.GetExpertise();
 
-      Assert.Equal(newFirstName, resultFirst);
-      Assert.Equal(newLastName, resultLast);
       Assert.Equal(newExpertise, resultExpertise);
+      // Assert.Equal(newLastName, resultLast);
+      // Assert.Equal(newExpertise, resultExpertise);
     }
   }
 }
