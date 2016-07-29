@@ -1,0 +1,24 @@
+<h1>Add Stylist</h1>
+<form action="/stylist/new" method="post">
+  <label for="new-stylist-first">First Name</label>
+  <input type="text" name="new-stylist-first">
+
+  <label for="new-stylist-last">Last Name</label>
+  <input type="text" name="new-stylist-last">
+
+  <label for="new-stylist-expertise">Expertise</label>
+  <input type="text" name="new-stylist-expertise">
+
+  <button type="submit" name="button">Add</button>
+</form>
+
+<h1>Current Stylists</h1>
+
+@if (Model.Count != 0)
+{
+  foreach(var stylist in Model)
+  {
+    <h3>Name: @stylist.GetFirstName() @stylist.GetLastName()</h3>
+    <h4>Expertise: @stylist.GetExpertise()</h4>
+  }
+}
