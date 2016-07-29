@@ -19,6 +19,24 @@ namespace Salon
       _expertise = Expertise;
     }
 
+    public override bool Equals(System.Object otherStylist)
+    {
+      if(!(otherStylist is Stylist))
+      {
+        return false;
+      }
+      else
+      {
+        Stylist newStylist = (Stylist) otherStylist;
+        bool idEquality = this.GetId() == newStylist.GetId();
+        bool firstNameEquality = this.GetFirstName() == newStylist.GetFirstName();
+        bool lastNameEquality = this.GetLastName() == newStylist.GetLastName();
+        bool expertiseEquality = this.GetExpertise() == newStylist.GetExpertise();
+
+        return (idEquality && firstNameEquality && lastNameEquality && expertiseEquality);
+      }
+    }
+
     public int GetId()
     {
       return _id;
@@ -48,7 +66,7 @@ namespace Salon
       return name;
     }
 
-    public string GetExertise()
+    public string GetExpertise()
     {
       return _expertise;
     }
