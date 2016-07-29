@@ -7,15 +7,15 @@ namespace Salon
   public class Stylist
   {
     private int _id;
-    private string _first_name;
-    private string _last_name;
+    private string _firstName;
+    private string _lastName;
     private string _expertise;
 
     public Stylist(string FirstName, string LastName, string Expertise, int Id = 0)
     {
       _id = Id;
-      _first_name = FirstName;
-      _last_name = LastName;
+      _firstName = FirstName;
+      _lastName = LastName;
       _expertise = Expertise;
     }
 
@@ -44,25 +44,25 @@ namespace Salon
 
     public string GetFirstName()
     {
-      return _first_name;
+      return _firstName;
     }
     public void SetFirstName(string newFirst)
     {
-      _first_name = newFirst;
+      _firstName = newFirst;
     }
 
     public string GetLastName()
     {
-      return _last_name;
+      return _lastName;
     }
     public void SetLastName(string newLast)
     {
-      _last_name = newLast;
+      _lastName = newLast;
     }
 
     public string GetFullName()
     {
-      string name = _first_name + " " + _last_name;
+      string name = _firstName + " " + _lastName;
       return name;
     }
 
@@ -185,7 +185,39 @@ namespace Salon
 
     public void Update(string newFirst, string newLast, string newExpertise)
     {
-      //TBD
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("UPDATE stylists SET first_name = @NewFirst, last_name = @NewLast, expertise = @NewExpertise WHERE id = @StylistId;", conn);
+
+      SqlParameter newFirstParameter = new SqlParameter();
+      newFirstParameter.ParameterName = "@NewFirst";
+      newFirstParameter.Value = newFirst;
+
+      SqlParameter newLastParameter = new SqlParameter();
+      newLastParameter.ParameterName = "@NewLast";
+      newLastParameter.Value = newLast;
+
+      SqlParameter newExpertiseParameter = new SqlParameter();
+      newExpertiseParameter.ParameterName = "@NewExpertise";
+      newExpertiseParameter.Value = newExpertise;
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(newFirstParameter);
+      cmd.Parameters.Add(newLastParameter);
+      cmd.Parameters.Add(newExpertiseParameter);
+      cmd.Parameters.Add(stylistIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        // this._firstName
+      }
+
     }
 
     public static void DeleteAll()
