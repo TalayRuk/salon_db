@@ -218,6 +218,10 @@ namespace Salon
         conn.Close();
       }
     }
+    public void Delete()
+    {
+      //TBD
+    }
 
     public static void DeleteAll()
     {

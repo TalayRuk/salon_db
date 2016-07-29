@@ -98,11 +98,18 @@ namespace Salon
       Assert.Equal(newExpertise, resultExpertise);
     }
 
-    // [Fact]
-    // public void T7_Delete_DeletesStylistFromDB()
-    // {
-    //   Stylist testStylist1 = new Stylist("Clementine", "Clips", "L.4 Specialist");
-    //   Stylist testStylist2 = new Stylist("Jake", "Shears", "L.5 Master");
-    // }
+    [Fact]
+    public void T7_Delete_DeletesStylistFromDB()
+    {
+      Stylist testStylist1 = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      Stylist testStylist2 = new Stylist("Jake", "Shears", "L.5 Master");
+
+      testStylist1.Delete();
+
+      List<Stylist> resultStylists = Stylist.GetAll();
+      List<Stylist> testStylists = new List<Stylist> {testStylist2};
+
+      Assert.Equal(testStylists, resultStylists);
+    }
   }
 }
