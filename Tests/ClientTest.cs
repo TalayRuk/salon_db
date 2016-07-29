@@ -43,6 +43,14 @@ namespace Salon
       List<Client> result = Client.GetAll();
       List<Client> testList = new List<Client>{testClient};
 
+      Console.WriteLine(result[0].GetFirstName());
+      Console.WriteLine(result[0].GetLastName());
+      Console.WriteLine(result[0].GetStylistId());
+
+      Console.WriteLine(testList[0].GetFirstName());
+      Console.WriteLine(testList[0].GetLastName());
+      Console.WriteLine(testList[0].GetStylistId());
+
       Assert.Equal(testList, result);
     }
   }

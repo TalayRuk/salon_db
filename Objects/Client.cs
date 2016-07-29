@@ -80,8 +80,9 @@ namespace Salon
         int clientId = rdr.GetInt32(0);
         string clientFirstName = rdr.GetString(1);
         string clientLastName = rdr.GetString(2);
+        int clientStylistId = rdr.GetInt32(3);
 
-        Client newClient = new Client(clientFirstName, clientLastName, clientId);
+        Client newClient = new Client(clientFirstName, clientLastName, clientStylistId, clientId);
         allClients.Add(newClient);
       }
       if (rdr != null)
@@ -100,7 +101,7 @@ namespace Salon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      SqlCommand cmd = new SqlCommand("INSERT INTO clients () OUTPUT INSERTED.id VALUES = (@ClientFirst, @ClientLast, @ClientStylistId);", conn);
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients (first_name, last_name, stylist_id) OUTPUT INSERTED.id VALUES (@ClientFirst, @ClientLast, @ClientStylistId);", conn);
 
       SqlParameter firstNameParameter = new SqlParameter();
       firstNameParameter.ParameterName = "@ClientFirst";
@@ -114,7 +115,24 @@ namespace Salon
       clientStylistIdParameter.ParameterName = "@ClientStylistId";
       clientStylistIdParameter.Value = this.GetStylistId();
 
-      //Pause to update client class for Stylist ID
+      cmd.Parameters.Add(firstNameParameter);
+      cmd.Parameters.Add(lastNameParameter);
+      cmd.Parameters.Add(clientStylistIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
