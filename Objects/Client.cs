@@ -17,6 +17,23 @@ namespace Salon
       _last_name = LastName;
     }
 
+    public override bool Equals(System.Object otherClient)
+    {
+      if (!(otherClient is Client))
+      {
+        return false;
+      }
+      else
+      {
+        Client newClient = (Client) otherClient;
+        bool idEquality = this.GetId() == newClient.GetId();
+        bool firstNameEquality = this.GetFirstName() == newClient.GetFirstName();
+        bool lastNameEquality = this.GetLastName() == newClient.GetLastName();
+
+        return (idEquality && firstNameEquality && lastNameEquality);
+      }
+    }
+
     public int GetId()
     {
       return _id;
@@ -74,6 +91,11 @@ namespace Salon
         conn.Close();
       }
       return allClients;
+    }
+
+    public void Save()
+    {
+      
     }
 
     public static void DeleteAll()

@@ -34,5 +34,16 @@ namespace Salon
       Assert.Equal(firstClient, secondClient);
     }
 
+    [Fact]
+    public void T3_Save_SavesToDB()
+    {
+      Client testClient = new Client("Shaggy", "Dew");
+      testClient.Save();
+
+      List<Client> result = Client.GetAll();
+      List<Client> testList = new List<Client>{testClient};
+
+      Assert.Equal(testList, result);
+    }
   }
 }
