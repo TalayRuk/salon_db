@@ -100,8 +100,6 @@ namespace Salon
       string resultExpertise = testStylist.GetExpertise();
 
       Assert.Equal(newExpertise, resultExpertise);
-      // Assert.Equal(newLastName, resultLast);
-      // Assert.Equal(newExpertise, resultExpertise);
     }
   }
 }

@@ -207,8 +207,6 @@ namespace Salon
       while (rdr.Read())
       {
         this._expertise = rdr.GetString(0);
-        // this._lastName = rdr.GetString(2);
-        // this._expertise = rdr.GetString(3);
       }
 
       if (rdr != null)
