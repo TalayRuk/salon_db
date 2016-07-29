@@ -146,6 +146,12 @@ namespace Salon
       }
     }
 
+    public static Stylist Find(int id)
+    {
+      Stylist testStylist = new Stylist("Jake", "Shears", "L.5 Master");
+      return testStylist;
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
