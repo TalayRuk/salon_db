@@ -108,7 +108,42 @@ namespace Salon
 
     public void Save()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO stylists (first_name, last_name, expertise) OUTPUT INSERTED.id VALUES (@StylistFirstName, @StylistLastName, @StylistExpertise);", conn);
+
+      SqlParameter firstNameParameter = new SqlParameter();
+      firstNameParameter.ParameterName = "@StylistFirstName";
+      firstNameParameter.Value = this.GetFirstName();
+
+      SqlParameter lastNameParameter = new SqlParameter();
+      lastNameParameter.ParameterName = "@StylistLastName";
+      lastNameParameter.Value = this.GetLastName();
+
+      SqlParameter expertiseParameter = new SqlParameter();
+      expertiseParameter.ParameterName = "@StylistExpertise";
+      expertiseParameter.Value = this.GetExpertise();
+
+      cmd.Parameters.Add(firstNameParameter);
+      cmd.Parameters.Add(lastNameParameter);
+      cmd.Parameters.Add(expertiseParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._id = rdr.GetInt32(0);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
