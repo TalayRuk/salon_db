@@ -69,5 +69,23 @@ namespace Salon
 
       Assert.Equal(testClient, foundClient);
     }
+
+    [Fact]
+    public void T6_Update_UpdatesClientInDB()
+    {
+      Client testClient = new Client("Shaggy", "Dew", 1);
+      testClient.Save();
+
+      string newFirst = "Lange";
+      string newLast = "Ponyta";
+
+      testClient.Update(newFirst, newLast);
+
+      string result1 = testClient.GetFirstName();
+      string result2 = testClient.GetLastName();
+
+      Assert.Equal(newFirst, result1);
+      Assert.Equal(newLast, result2);
+    }
   }
 }

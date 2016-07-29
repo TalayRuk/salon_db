@@ -7,15 +7,15 @@ namespace Salon
   public class Client
   {
     private int _id;
-    private string _first_name;
-    private string _last_name;
+    private string _firstName;
+    private string _lastName;
     private int _stylistId;
 
     public Client(string FirstName, string LastName, int StylistId, int Id = 0)
     {
       _id = Id;
-      _first_name = FirstName;
-      _last_name = LastName;
+      _firstName = FirstName;
+      _lastName = LastName;
       _stylistId = StylistId;
     }
 
@@ -44,20 +44,20 @@ namespace Salon
 
     public string GetFirstName()
     {
-      return _first_name;
+      return _firstName;
     }
     public void SetFirstName(string newFirst)
     {
-      _first_name = newFirst;
+      _firstName = newFirst;
     }
 
     public string GetLastName()
     {
-      return _last_name;
+      return _lastName;
     }
     public void SetLastName(string newLast)
     {
-      _last_name = newLast;
+      _lastName = newLast;
     }
 
     public int GetStylistId()
@@ -172,6 +172,47 @@ namespace Salon
         conn.Close();
       }
       return foundClient;
+    }
+    public void Update(string newFirst, string newLast)
+    {
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      //Discovered how to output all (*) will allow you to select which column by index in Reader below
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET first_name = @NewFirst, last_name = @NewLast OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
+
+      SqlParameter newFirstParameter = new SqlParameter();
+      newFirstParameter.ParameterName = "@NewFirst";
+      newFirstParameter.Value = newFirst;
+
+      SqlParameter newLastParameter = new SqlParameter();
+      newLastParameter.ParameterName = "@NewLast";
+      newLastParameter.Value = newLast;
+
+      SqlParameter clientIdParameter = new SqlParameter();
+      clientIdParameter.ParameterName = "@ClientId";
+      clientIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(newFirstParameter);
+      cmd.Parameters.Add(newLastParameter);
+      cmd.Parameters.Add(clientIdParameter);
+
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      while (rdr.Read())
+      {
+        this._firstName = rdr.GetString(1);
+        this._lastName = rdr.GetString(2);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
