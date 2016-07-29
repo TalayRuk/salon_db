@@ -45,5 +45,18 @@ namespace Salon
 
       Assert.Equal(testList, result);
     }
+
+    [Fact]
+    public void T4_Save_AssignsIdToStylist()
+    {
+      Stylist testStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      testStylist.Save();
+
+      Stylist savedStylist = Stylist.GetAll()[0];
+      int result = savedStylist.GetId();
+      int testId = testStylist.GetId();
+
+      Assert.Equal(testId, result);
+    }
   }
 }
