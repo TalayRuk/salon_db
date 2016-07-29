@@ -101,15 +101,18 @@ namespace Salon
     [Fact]
     public void T7_Delete_DeletesStylistFromDB()
     {
+      //Always remember to save to DB (Save())
       Stylist testStylist1 = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      testStylist1.Save();
       Stylist testStylist2 = new Stylist("Jake", "Shears", "L.5 Master");
+      testStylist2.Save();
 
       testStylist1.Delete();
 
-      List<Stylist> resultStylists = Stylist.GetAll();
+      List<Stylist> result = Stylist.GetAll();
       List<Stylist> testStylists = new List<Stylist> {testStylist2};
 
-      Assert.Equal(testStylists, resultStylists);
+      Assert.Equal(testStylists, result);
     }
   }
 }

@@ -220,7 +220,24 @@ namespace Salon
     }
     public void Delete()
     {
-      //TBD
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      //DELETE CLIENTS AS WELL?
+      SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(stylistIdParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
