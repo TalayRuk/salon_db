@@ -58,5 +58,16 @@ namespace Salon
 
       Assert.Equal(testId, result);
     }
+
+    [Fact]
+    public void T5_Find_FindsClientInDB()
+    {
+      Client testClient = new Client("Shaggy", "Dew", 1);
+      testClient.Save();
+
+      Client foundClient = Client.Find(testClient.GetId());
+
+      Assert.Equal(testClient, foundClient);
+    }
   }
 }
