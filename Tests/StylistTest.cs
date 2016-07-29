@@ -26,12 +26,24 @@ namespace Salon
     }
 
     [Fact]
-    public void T2_ReturnsTrueIfStylistIsSame()
+    public void T2_Equal_ReturnsTrueIfStylistIsSame()
     {
       Stylist firstStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
       Stylist secondStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
 
       Assert.Equal(firstStylist, secondStylist);
+    }
+
+    [Fact]
+    public void T3_Save_SavesToDB()
+    {
+      Stylist testStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      testStylist.Save();
+
+      List<Stylist> result = Stylist.GetAll();
+      List<Stylist> testList = new List<Stylist>{testStylist};
+
+      Assert.Equal(testList, result);
     }
   }
 }

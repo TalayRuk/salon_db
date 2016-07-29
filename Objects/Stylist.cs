@@ -106,6 +106,11 @@ namespace Salon
       return allStylists;
     }
 
+    public void Save()
+    {
+      
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
