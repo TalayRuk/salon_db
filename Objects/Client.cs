@@ -45,5 +45,12 @@ namespace Salon
       name = _first_name + " " + _last_name;
       return name;
     }
+
+    public static void DeleteAll()
+    SqlConnection conn = DB.Connection();
+    conn.Open();
+    SqlCommand cmd = new SqlCommand("DELETE FROM clients;", conn);
+    cmd.ExecuteNonQuery;
+    conn.Close();
   }
 }
