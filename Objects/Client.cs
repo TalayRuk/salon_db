@@ -9,12 +9,14 @@ namespace Salon
     private int _id;
     private string _first_name;
     private string _last_name;
+    private int _stylistId;
 
-    public Client(string FirstName, string LastName, int Id = 0)
+    public Client(string FirstName, string LastName, int StylistId, int Id = 0)
     {
       _id = Id;
       _first_name = FirstName;
       _last_name = LastName;
+      _stylistId = StylistId;
     }
 
     public override bool Equals(System.Object otherClient)
@@ -29,8 +31,9 @@ namespace Salon
         bool idEquality = this.GetId() == newClient.GetId();
         bool firstNameEquality = this.GetFirstName() == newClient.GetFirstName();
         bool lastNameEquality = this.GetLastName() == newClient.GetLastName();
+        bool stylistIdEquality = this.GetStylistId() == newClient.GetStylistId();
 
-        return (idEquality && firstNameEquality && lastNameEquality);
+        return (idEquality && firstNameEquality && lastNameEquality && stylistIdEquality);
       }
     }
 
@@ -57,10 +60,9 @@ namespace Salon
       _last_name = newLast;
     }
 
-    public string GetFullName()
+    public int GetStylistId()
     {
-      string name = _first_name + " " + _last_name;
-      return name;
+      return _stylistId;
     }
 
     public static List<Client> GetAll()

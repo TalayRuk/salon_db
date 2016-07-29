@@ -28,8 +28,8 @@ namespace Salon
     [Fact]
     public void T2_Equal_ReturnsTrueIfClientIsSame()
     {
-      Client firstClient = new Client("Shaggy", "Dew");
-      Client secondClient = new Client("Shaggy", "Dew");
+      Client firstClient = new Client("Shaggy", "Dew", 1);
+      Client secondClient = new Client("Shaggy", "Dew", 1);
 
       Assert.Equal(firstClient, secondClient);
     }
@@ -37,7 +37,7 @@ namespace Salon
     [Fact]
     public void T3_Save_SavesToDB()
     {
-      Client testClient = new Client("Shaggy", "Dew");
+      Client testClient = new Client("Shaggy", "Dew", 1);
       testClient.Save();
 
       List<Client> result = Client.GetAll();
