@@ -82,5 +82,30 @@ namespace Salon
 
       Assert.Equal(testStylist, foundStylist);
     }
+
+    [Fact]
+    public void T6_Update_UpdatesStylistInDB()
+    {
+      string firstName = "Jake";
+      string lastName = "Shears";
+      string expertise = "Lvl. 5 Master";
+
+      Stylist testStylist = new Stylist(firstName, lastName, expertise);
+      testStylist.Save();
+
+      string newFirstName = "Yakul";
+      string newLastName = "Scizor";
+      string newExpertise = "Lvl. 15 Grand Master";
+
+      testStylist.Update(newFirstName, newLastName, newExpertise);
+
+      string resultFirst = testStylist.GetFirstName();
+      string resultLast = testStylist.GetLastName();
+      string resultExpertise = testStylist.GetExpertise();
+
+      Assert.Equal(newFirstName, resultFirst);
+      Assert.Equal(newLastName, resultLast);
+      Assert.Equal(newExpertise, resultExpertise);
+    }
   }
 }

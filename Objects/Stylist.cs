@@ -183,6 +183,11 @@ namespace Salon
       return foundStylist;
     }
 
+    public void Update(string newFirst, string newLast, string newExpertise)
+    {
+      //TBD
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();
