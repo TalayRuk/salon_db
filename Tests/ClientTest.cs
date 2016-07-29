@@ -17,12 +17,12 @@ namespace Salon
       Client.DeleteAll();
     }
 
-    // [Fact]
-    // public void T1_DBEmptyAtFirst()
-    // {
-    //   int result = Client.GetAll().Count;
-    //
-    //   Assert.Equal(0, result);
-    // }
+    [Fact]
+    public void T1_DBEmptyAtFirst()
+    {
+      int result = Client.GetAll().Count;
+
+      Assert.Equal(0, result);
+    }
   }
 }
