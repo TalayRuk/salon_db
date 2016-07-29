@@ -86,11 +86,7 @@ namespace Salon
     [Fact]
     public void T6_Update_UpdatesStylistInDB()
     {
-      string firstName = "Jake";
-      string lastName = "Shears";
-      string expertise = "Lvl. 5 Master";
-
-      Stylist testStylist = new Stylist(firstName, lastName, expertise);
+      Stylist testStylist = new Stylist("Jake", "Shears", "L.5 Master");
       testStylist.Save();
 
       string newExpertise = "Lvl. 15 Grand Master";
@@ -101,5 +97,12 @@ namespace Salon
 
       Assert.Equal(newExpertise, resultExpertise);
     }
+
+    // [Fact]
+    // public void T7_Delete_DeletesStylistFromDB()
+    // {
+    //   Stylist testStylist1 = new Stylist("Clementine", "Clips", "L.4 Specialist");
+    //   Stylist testStylist2 = new Stylist("Jake", "Shears", "L.5 Master");
+    // }
   }
 }
