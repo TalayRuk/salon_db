@@ -95,7 +95,24 @@ namespace Salon
 
     public void Save()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("INSERT INTO clients () OUTPUT INSERTED.id VALUES = (@ClientFirst, @ClientLast, @ClientStylistId);", conn);
+
+      SqlParameter firstNameParameter = new SqlParameter();
+      firstNameParameter.ParameterName = "@ClientFirst";
+      firstNameParameter.Value = this.GetFirstName();
+
+      SqlParameter lastNameParameter = new SqlParameter();
+      lastNameParameter.ParameterName = "@ClientLast";
+      lastNameParameter.Value = this.GetLastName();
+
+      SqlParameter clientStylistIdParameter = new SqlParameter();
+      clientStylistIdParameter.ParameterName = "@ClientStylistId";
+      clientStylistIdParameter.Value = this.GetStylistId();
+
+      //Pause to update client class for Stylist ID
     }
 
     public static void DeleteAll()
