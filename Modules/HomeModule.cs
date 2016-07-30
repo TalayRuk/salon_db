@@ -22,12 +22,12 @@ namespace Salon
         return View["index.cshtml", allStylists];
       };
 
-      Get["/clients/{firstName}"] = parameters => {
+      Get["/clients/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
-        Stylist selectedStylist = Stylist.Find(parameters.firstName);
+        Stylist selectedStylist = Stylist.Find(parameters.id);
         List<Client> stylistClients = selectedStylist.GetClients();
         model.Add("stylist", selectedStylist);
-        model.Add("client", stylistClients);
+        model.Add("clients", stylistClients);
         return View["clients.cshtml", model];
       };
     }

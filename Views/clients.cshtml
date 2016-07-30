@@ -1,10 +1,13 @@
 <h1>Current Clients</h1>
 
-@if (Model.Count != 0)
+@if (Model["clients"].Count == 0)
 {
-  foreach(var client in Model)
+  <h3>This stylist does not have any clients yet...</h3>
+}
+else
+{
+  @foreach(var client in Model["clients"])
   {
-    <h3>Name: @client.GetFirstName() @sclient.GetLastName()</h3>
-    <h4>Expertise: @client.GetExpertise()</h4>
+    <h3>Name: @client.GetFirstName() @client.GetLastName()</h3>
   }
 }
