@@ -114,5 +114,7 @@ namespace Salon
 
       Assert.Equal(testStylists, result);
     }
+
+    //TEST FOR GETTING ALL CLIENTS OF A STYLIST
   }
 }
