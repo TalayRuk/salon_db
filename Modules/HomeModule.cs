@@ -22,6 +22,19 @@ namespace Salon
         return View["index.cshtml", allStylists];
       };
 
+      Post["/clients/{id}"] = parameters => {
+        Client newClient = new Client(    Request.Form["new-client-first"],
+                                          Request.Form["new-client-last"],
+                                          Request.Form["new-client-stylist-id"]);
+        newClient.Save();
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        List<Client> stylistClients = selectedStylist.GetClients();
+        model.Add("stylist", selectedStylist);
+        model.Add("clients", stylistClients);
+        return View["clients.cshtml", model];
+      };
+
       Get["/clients/{id}"] = parameters => {
         Dictionary<string, object> model = new Dictionary<string, object>();
         Stylist selectedStylist = Stylist.Find(parameters.id);

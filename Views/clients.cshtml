@@ -1,10 +1,12 @@
 <h1>Add Client</h1>
-<form action="/client/new" method="post">
+<form action="/clients/@Model["stylist"].GetId()" method="post">
   <label for="new-client-first">First Name</label>
   <input type="text" name="new-client-first">
 
   <label for="new-client-last">Last Name</label>
   <input type="text" name="new-client-last">
+
+  <input  type="hidden" name="new-client-stylist-id" value="@Model["stylist"].GetId()">
 
   <button type="submit" name="button">Add</button>
 </form>
@@ -17,8 +19,10 @@
 }
 else
 {
+  <ol>
   @foreach(var client in Model["clients"])
   {
-    <h3>Name: @client.GetFirstName() @client.GetLastName()</h3>
+    <h3><li>@client.GetFirstName() @client.GetLastName()</li></h3>
   }
+  </ol>
 }
