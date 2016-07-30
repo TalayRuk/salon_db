@@ -6,3 +6,8 @@
 
   <button type="submit" name="button">Add</button>
 </form>
+
+<form action="/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">DELETE</button>
+</form>
