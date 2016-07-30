@@ -106,6 +106,12 @@ namespace Salon
       return allStylists;
     }
 
+    public List<Client> GetClients()
+    {
+      List<Client> testClients = new List<Client> {};
+      return testClients;
+    }
+
     public void Save()
     {
       SqlConnection conn = DB.Connection();

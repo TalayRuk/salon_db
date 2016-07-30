@@ -21,12 +21,12 @@ namespace Salon
         return View["index.cshtml", allStylists];
       };
 
-      Get["/clients/{firstName}"] = parameters => {
-        Dictionary<string, object> model = new Dictionary<string, object>();
-        var selectedStylist = Stylist.Find(parameters.firstName);
-        //NEED TO WRITE GETCLIENTS METHOD
-        var stylistClients = selectedStylist.GetClients();
-      };
+      // Get["/clients/{firstName}"] = parameters => {
+      //   Dictionary<string, object> model = new Dictionary<string, object>();
+      //   var selectedStylist = Stylist.Find(parameters.firstName);
+      //   //NEED TO WRITE GETCLIENTS METHOD
+      //   var stylistClients = selectedStylist.GetClients();
+      // };
     }
   }
 }

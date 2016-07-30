@@ -115,6 +115,22 @@ namespace Salon
       Assert.Equal(testStylists, result);
     }
 
-    //TEST FOR GETTING ALL CLIENTS OF A STYLIST
+    [Fact]
+    public void T8_GetClients_RetrievesAllClientsOfStylist()
+    {
+      Stylist testStylist = new Stylist("Jake", "Shears", "L.5 Master");
+      testStylist.Save();
+
+      Client testClient1 = new Client("Shaggy", "Dew", 1);
+      testClient1.Save();
+      Client testClient2 = new Client("Lange", "Ponyta", 2);
+      testClient2.Save();
+
+      List<Client> testClients = new List<Client> {testClient1, testClient2};
+      List<Client> result = testStylist.GetClients();
+
+      Assert.Equal(testClients, result);
+    }
+
   }
 }
