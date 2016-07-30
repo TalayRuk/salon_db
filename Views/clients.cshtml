@@ -1,3 +1,14 @@
+<h1>Add Client</h1>
+<form action="/client/new" method="post">
+  <label for="new-client-first">First Name</label>
+  <input type="text" name="new-client-first">
+
+  <label for="new-client-last">Last Name</label>
+  <input type="text" name="new-client-last">
+
+  <button type="submit" name="button">Add</button>
+</form>
+
 <h1>Current Clients</h1>
 
 @if (Model["clients"].Count == 0)
