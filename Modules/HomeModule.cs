@@ -12,6 +12,7 @@ namespace Salon
         List<Stylist> allStylists = Stylist.GetAll();
         return View["index.cshtml", allStylists];
       };
+
       Post["/stylist/new"] = _ => {
         Stylist newStylist = new Stylist( Request.Form["new-stylist-first"],
                                           Request.Form["new-stylist-last"],
@@ -21,12 +22,14 @@ namespace Salon
         return View["index.cshtml", allStylists];
       };
 
-      // Get["/clients/{firstName}"] = parameters => {
-      //   Dictionary<string, object> model = new Dictionary<string, object>();
-      //   var selectedStylist = Stylist.Find(parameters.firstName);
-      //   //NEED TO WRITE GETCLIENTS METHOD
-      //   var stylistClients = selectedStylist.GetClients();
-      // };
+      Get["/clients/{firstName}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        Stylist selectedStylist = Stylist.Find(parameters.firstName);
+        List<Client> stylistClients = selectedStylist.GetClients();
+        model.Add("stylist", selectedStylist);
+        model.Add("client", stylistClients);
+        return View["clients.cshtml", model];
+      };
     }
   }
 }
