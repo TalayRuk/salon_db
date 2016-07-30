@@ -43,6 +43,17 @@ namespace Salon
         model.Add("clients", stylistClients);
         return View["clients.cshtml", model];
       };
+
+      Get["/stylist/edit/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        return View["stylist_edit.cshtml". selectedStylist];
+      };
+
+      // Patch["/stylist/edit/{id}"] = parameters => {
+      //   Stylist selectedStylist = Stylist.Find(parameters.id);
+      //   selectedStylist.Update(Request.Form["update-stylist-expertise"]);
+      //   return View["index.cshtml"]
+      // };
     }
   }
 }
