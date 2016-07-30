@@ -108,8 +108,39 @@ namespace Salon
 
     public List<Client> GetClients()
     {
-      List<Client> testClients = new List<Client> {};
-      return testClients;
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      SqlCommand cmd = new SqlCommand("SELECT * FROM clients WHERE stylist_id = @StylistId;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(stylistIdParameter);
+      SqlDataReader rdr = cmd.ExecuteReader();
+
+      List<Client> clients = new List<Client> {};
+      while (rdr.Read())
+      {
+        int clientId = rdr.GetInt32(0);
+        string clientFirst = rdr.GetString(1);
+        string clientLast = rdr.GetString(2);
+        int clientStylistId = rdr.GetInt32(3);
+
+        Client newClient = new Client(clientFirst, clientLast, clientStylistId, clientId);
+        clients.Add(newClient);
+      }
+
+      if (rdr != null)
+      {
+        rdr.Close();
+      }
+      if (conn != null)
+      {
+        conn.Close();
+      }
+      return clients;
     }
 
     public void Save()

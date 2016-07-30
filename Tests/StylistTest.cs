@@ -121,9 +121,9 @@ namespace Salon
       Stylist testStylist = new Stylist("Jake", "Shears", "L.5 Master");
       testStylist.Save();
 
-      Client testClient1 = new Client("Shaggy", "Dew", 1);
+      Client testClient1 = new Client("Shaggy", "Dew", testStylist.GetId());
       testClient1.Save();
-      Client testClient2 = new Client("Lange", "Ponyta", 2);
+      Client testClient2 = new Client("Lange", "Ponyta", testStylist.GetId());
       testClient2.Save();
 
       List<Client> testClients = new List<Client> {testClient1, testClient2};
