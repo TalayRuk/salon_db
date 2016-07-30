@@ -62,6 +62,15 @@ namespace Salon
         List<Stylist> allStylists = Stylist.GetAll();
         return View["index.cshtml", allStylists];
       };
+
+      Get["/client/edit/{id}"] = parameters => {
+        Dictionary<string, object> model = new Dictionary<string, object>();
+        List<Stylist> allStylists = Stylist.GetAll();
+        Client currentClient = Client.Find(parameters.id);
+        model.Add("stylists", allStylists);
+        model.Add("client", currentClient);
+        return View["client_edit.cshtml", model];
+      };
     }
   }
 }

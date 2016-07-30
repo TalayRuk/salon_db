@@ -1,0 +1,25 @@
+<form action="/@Model["client"].GetId()" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <label for="update-client-first">First Name</label>
+  <input type="text" name="update-client-first" value="@Model["client"].GetFirstName()">
+
+  <label for="update-client-last">Last Name</label>
+  <input type="text" name="update-client-last" value="@Model["client"].GetLastName()">
+
+  <label for="update-client-stylist-id">Stylist:</label>
+    <select required name="update-client-stylist-id">
+
+      @foreach (var stylist in Model["stylists"])
+      {
+        <option value="@stylist.GetId()">@stylist.GetFirstName() @stylist.GetLastName()</option>
+      }
+    </select>
+
+  <button type="submit" name="button">Add</button>
+</form>
+
+<form action="/@Model["client"].GetId()" method="post">
+  <input type="hidden" name="_method" value="DELETE">
+  <button type="submit" name="button">DELETE</button>
+</form>

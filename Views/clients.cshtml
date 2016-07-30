@@ -22,7 +22,7 @@ else
   <ol>
   @foreach(var client in Model["clients"])
   {
-    <h3><li>@client.GetFirstName() @client.GetLastName()</li></h3>
+    <h3><li>@client.GetFirstName() @client.GetLastName() <a href="/client/edit/@client.GetId()">Edit/Delete</a></li></h3>
   }
   </ol>
 }
