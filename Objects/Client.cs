@@ -173,13 +173,13 @@ namespace Salon
       }
       return foundClient;
     }
-    public void Update(string newFirst, string newLast)
+    public void Update(string newFirst, string newLast, int newStylistId)
     {
       SqlConnection conn = DB.Connection();
       conn.Open();
 
       //Discovered how to output all (*) will allow you to select which column by index in Reader below
-      SqlCommand cmd = new SqlCommand("UPDATE clients SET first_name = @NewFirst, last_name = @NewLast OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
+      SqlCommand cmd = new SqlCommand("UPDATE clients SET first_name = @NewFirst, last_name = @NewLast, stylist_id = @NewStylistId OUTPUT INSERTED.* WHERE id = @ClientId;", conn);
 
       SqlParameter newFirstParameter = new SqlParameter();
       newFirstParameter.ParameterName = "@NewFirst";
@@ -189,12 +189,17 @@ namespace Salon
       newLastParameter.ParameterName = "@NewLast";
       newLastParameter.Value = newLast;
 
+      SqlParameter newStylistIdParameter = new SqlParameter();
+      newStylistIdParameter.ParameterName = "@NewStylistId";
+      newStylistIdParameter.Value = newStylistId;
+
       SqlParameter clientIdParameter = new SqlParameter();
       clientIdParameter.ParameterName = "@ClientId";
       clientIdParameter.Value = this.GetId();
 
       cmd.Parameters.Add(newFirstParameter);
       cmd.Parameters.Add(newLastParameter);
+      cmd.Parameters.Add(newStylistIdParameter);
       cmd.Parameters.Add(clientIdParameter);
 
       SqlDataReader rdr = cmd.ExecuteReader();
@@ -203,6 +208,7 @@ namespace Salon
       {
         this._firstName = rdr.GetString(1);
         this._lastName = rdr.GetString(2);
+        this._stylistId = rdr.GetInt32(3);
       }
 
       if (rdr != null)

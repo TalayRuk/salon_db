@@ -78,14 +78,17 @@ namespace Salon
 
       string newFirst = "Lange";
       string newLast = "Ponyta";
+      int newStylistId = 2;
 
-      testClient.Update(newFirst, newLast);
+      testClient.Update(newFirst, newLast, newStylistId);
 
       string result1 = testClient.GetFirstName();
       string result2 = testClient.GetLastName();
+      int result3 = testClient.GetStylistId();
 
       Assert.Equal(newFirst, result1);
       Assert.Equal(newLast, result2);
+      Assert.Equal(newStylistId, result3);
     }
 
     [Fact]

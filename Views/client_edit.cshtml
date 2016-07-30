@@ -1,4 +1,4 @@
-<form action="/@Model["client"].GetId()" method="post">
+<form action="/clients/@Model["client"].GetId()" method="post">
   <input type="hidden" name="_method" value="PATCH">
 
   <label for="update-client-first">First Name</label>
@@ -9,7 +9,7 @@
 
   <label for="update-client-stylist-id">Stylist:</label>
     <select required name="update-client-stylist-id">
-
+      <option selected disabled value="@Model["client"].GetStylistId()">Choose a Stylist</option>
       @foreach (var stylist in Model["stylists"])
       {
         <option value="@stylist.GetId()">@stylist.GetFirstName() @stylist.GetLastName()</option>
@@ -23,3 +23,5 @@
   <input type="hidden" name="_method" value="DELETE">
   <button type="submit" name="button">DELETE</button>
 </form>
+
+@Model["client"].GetId()
