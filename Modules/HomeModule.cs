@@ -46,14 +46,15 @@ namespace Salon
 
       Get["/stylist/edit/{id}"] = parameters => {
         Stylist selectedStylist = Stylist.Find(parameters.id);
-        return View["stylist_edit.cshtml". selectedStylist];
+        return View["stylist_edit.cshtml", selectedStylist];
       };
 
-      // Patch["/stylist/edit/{id}"] = parameters => {
-      //   Stylist selectedStylist = Stylist.Find(parameters.id);
-      //   selectedStylist.Update(Request.Form["update-stylist-expertise"]);
-      //   return View["index.cshtml"]
-      // };
+      Patch["/{id}"] = parameters => {
+        Stylist selectedStylist = Stylist.Find(parameters.id);
+        selectedStylist.Update(Request.Form["update-stylist-expertise"]);
+        List<Stylist> allStylists = Stylist.GetAll();
+        return View["index.cshtml", allStylists];
+      };
     }
   }
 }

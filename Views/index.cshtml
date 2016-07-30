@@ -19,7 +19,7 @@
   foreach(var stylist in Model)
   {
     <h3>Name: @stylist.GetFirstName() @stylist.GetLastName()</h3>
-    <h4>Expertise: @stylist.GetExpertise()</h4>
+    <h4>Expertise: @stylist.GetExpertise() <a href="/stylist/edit/@stylist.GetId()">Edit/Delete</a></h4>
     <a href="/clients/@stylist.GetId()">@stylist.GetFirstName()'s Clients</a>
   }
 }

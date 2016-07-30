@@ -1,0 +1,8 @@
+<form action="/@Model.GetId()" method="post">
+  <input type="hidden" name="_method" value="PATCH">
+
+  <label for="new-stylist-expertise">Expertise</label>
+  <input type="text" name="update-stylist-expertise" value="@Model.GetExpertise()">
+
+  <button type="submit" name="button">Add</button>
+</form>
