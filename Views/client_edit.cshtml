@@ -1,3 +1,5 @@
+<h1>Edit Client</h1>
+
 <form action="/clients/@Model["client"].GetId()" method="post">
   <input type="hidden" name="_method" value="PATCH">
 
@@ -24,4 +26,5 @@
   <button type="submit" name="button">DELETE</button>
 </form>
 
-@Model["client"].GetId()
+<a href="/">All Stylists</a>
+<a href="/clients/@Model["stylist"].GetId()">Return to @Model["stylist"].GetFirstName()'s Clients</a>
