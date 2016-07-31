@@ -1,0 +1,76 @@
+body {
+  font-family: 'Quicksand', sans-serif;
+  min-width: 650px;
+}
+
+.container-banner {
+  background-color: black;
+  color: white;
+  text-align: center;
+  min-height: 250px;
+}
+
+#banner-title {
+  width: 100%;
+  min-width: 400px;
+  position: absolute;
+  padding: 10px;
+  font-size: 60px;
+  bottom: 0;
+}
+
+.title-container {
+  min-height: 150px;
+  text-align: center;
+  position: relative;
+}
+
+.underline {
+  padding-bottom: 5px;
+  border-bottom: 1px solid black;
+}
+
+.salon-input {
+  border-radius: 0;
+}
+
+#logo {
+  height: 200px;
+}
+
+.logo-container {
+  display: inline-block;
+  padding: 20px;
+}
+
+.app-btn {
+  width: 200px;
+  font-size: 20px;
+  border-radius: 0;
+  color: white;
+  background-color: black;
+  margin-top: 20px;
+}
+
+.app-btn:hover {
+  color: chartreuse;
+}
+
+.link-container, .link-container-bottom {
+  font-size: 20px;
+}
+
+.link-container-bottom {
+  margin-top: 20px;
+  border-top: 2px solid black;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.link-container a, .link-container-bottom a {
+  color: #660000;
+}
+
+.link-container a:hover, .link-container-bottom a:hover {
+  color: chartreuse;
+}

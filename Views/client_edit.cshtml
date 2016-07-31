@@ -1,34 +1,41 @@
 @{
-  Layout = "Views/Shared/_Layout.cshtml"
+  Layout = "Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Client</h2>
+<h1>@Model["stylist"].GetFirstName() @Model["stylist"].GetLastName()</h1>
+<div class="container">
+  <h2 class="underline">Edit Client : @Model["client"].GetFirstName() @Model["client"].GetLastName()</h2>
 
-<form action="/clients/@Model["client"].GetId()" method="post">
-  <input type="hidden" name="_method" value="PATCH">
+  <form action="/clients/@Model["client"].GetId()" method="post">
+    <input type="hidden" name="_method" value="PATCH">
 
-  <label for="update-client-first">First Name</label>
-  <input type="text" name="update-client-first" value="@Model["client"].GetFirstName()">
+    <label for="update-client-first">First Name</label>
+    <input class="salon-input form-control" type="text" name="update-client-first" value="@Model["client"].GetFirstName()">
 
-  <label for="update-client-last">Last Name</label>
-  <input type="text" name="update-client-last" value="@Model["client"].GetLastName()">
+    <label for="update-client-last">Last Name</label>
+    <input class="salon-input form-control" type="text" name="update-client-last" value="@Model["client"].GetLastName()">
 
-  <label for="update-client-stylist-id">Stylist:</label>
-    <select required name="update-client-stylist-id">
+    <label for="update-client-stylist-id">Stylist:</label>
+    <select class="salon-input form-control" required name="update-client-stylist-id">
       <option selected disabled value="@Model["client"].GetStylistId()">Choose a Stylist</option>
       @foreach (var stylist in Model["stylists"])
       {
         <option value="@stylist.GetId()">@stylist.GetFirstName() @stylist.GetLastName()</option>
       }
     </select>
+    <button class="btn app-btn" type="submit" name="button">Update Client</button>
+  </form>
 
-  <button type="submit" name="button">Add</button>
-</form>
+  <form action="/clients/@Model["client"].GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn app-btn" type="submit" name="button">Delete Client</button>
+  </form>
+  <a href="/clients/@Model["stylist"].GetId()">
+    <button class="btn app-btn" type="button" name="button">CANCEL</button>
+  </a>
 
-<form action="/clients/@Model["client"].GetId()" method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type="submit" name="button">DELETE</button>
-</form>
-
-<a href="/">All Stylists</a>
-<a href="/clients/@Model["stylist"].GetId()">Return to @Model["stylist"].GetFirstName()'s Clients</a>
+  <div class="link-container-bottom">
+    <a href="/">All Stylists</a> |
+    <a href="/clients/@Model["stylist"].GetId()">@Model["stylist"].GetFirstName()'s Clients</a>
+  </div>
+</div>

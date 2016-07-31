@@ -1,21 +1,27 @@
 @{
-  Layout = "Views/Shared/_Layout.cshtml"
+  Layout = "Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit Stylist</h2>
+<h2 class="underline">Edit Stylist</h2>
+<div class="container">
 
-<form action="/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="PATCH">
+  <form action="/@Model.GetId()" method="post">
+    <input type="hidden" name="_method" value="PATCH">
 
-  <label for="update-stylist-expertise">Expertise</label>
-  <input type="text" name="update-stylist-expertise" value="@Model.GetExpertise()">
+    <label for="update-stylist-expertise">Expertise</label>
+    <input class="salon-input form-control" type="text" name="update-stylist-expertise" value="@Model.GetExpertise()">
 
-  <button type="submit" name="button">Add</button>
-</form>
+    <button class="btn app-btn" type="submit" name="button">Update Expertise</button>
+  </form>
 
-<form action="/@Model.GetId()" method="post">
-  <input type="hidden" name="_method" value="DELETE">
-  <button type="submit" name="button">DELETE</button>
-</form>
-
-<a href="/">All Stylists</a>
+  <form action="/@Model.GetId()" method="post">
+    <input type="hidden" name="_method" value="DELETE">
+    <button class="btn app-btn" type="submit" name="button">Delete Stylist</button>
+  </form>
+  <a href="/">
+    <button class="btn app-btn" type="button" name="button">CANCEL</button>
+  </a>
+  <div class="link-container-bottom">
+    <a href="/">All Stylists</a>
+  </div>
+</div>

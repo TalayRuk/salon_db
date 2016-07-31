@@ -1,36 +1,46 @@
 @{
-  Layout = "Views/Shared/_Layout.cshtml"
+  Layout = "Views/Shared/_Layout.cshtml";
 }
 
 <h1>@Model["stylist"].GetFirstName() @Model["stylist"].GetLastName()</h1>
+<div class="container">
+  <h2 class="underline">Add Client</h2>
+  <div class="container">
+    <form action="/clients/@Model["stylist"].GetId()" method="post">
+      <label for="new-client-first">First Name</label>
+      <input class="salon-input form-control" type="text" name="new-client-first">
 
-<h2>Add Client</h2>
-<form action="/clients/@Model["stylist"].GetId()" method="post">
-  <label for="new-client-first">First Name</label>
-  <input type="text" name="new-client-first">
+      <label for="new-client-last">Last Name</label>
+      <input class="salon-input form-control" type="text" name="new-client-last">
 
-  <label for="new-client-last">Last Name</label>
-  <input type="text" name="new-client-last">
+      <input  type="hidden" name="new-client-stylist-id" value="@Model["stylist"].GetId()">
 
-  <input  type="hidden" name="new-client-stylist-id" value="@Model["stylist"].GetId()">
+      <button class="btn app-btn" type="submit" name="button">Add Client</button>
+    </form>
+  </div>
 
-  <button type="submit" name="button">Add</button>
-</form>
-
-<h2>Current Clients</h2>
-
-@if (Model["clients"].Count == 0)
-{
-  <h3>This stylist does not have any clients yet...</h3>
-}
-else
-{
-  <ol>
-  @foreach(var client in Model["clients"])
-  {
-    <h3><li>@client.GetFirstName() @client.GetLastName() <a href="/client/edit/@client.GetId()">Edit/Delete</a></li></h3>
-  }
-  </ol>
-}
-
-<a href="/">All Stylists</a>
+  <h2 class="underline">Current Clients</h2>
+  <div class="container">
+    @if (Model["clients"].Count == 0)
+    {
+      <h3>This stylist does not have any clients yet.</h3>
+    }
+    else
+    {
+      <ol>
+        @foreach(var client in Model["clients"])
+        {
+          <h3><li>@client.GetFirstName() @client.GetLastName()</li></h3>
+          <div class="link-container">
+            <blockquote>
+              > <a href="/client/edit/@client.GetId()">Edit/Delete</a>
+            </blockquote>
+          </div>
+        }
+      </ol>
+    }
+  </div>
+  <div class="link-container-bottom">
+    <a href="/">All Stylists</a>
+  </div>
+</div>

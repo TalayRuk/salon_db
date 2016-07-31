@@ -3,15 +3,22 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
     <link href="/Content/styles.css" rel="stylesheet" type="text/css">
     <title></title>
   </head>
   <body>
     <div class="container-fluid container-banner">
-      <h1 id="banner-title">Salon Client Management</h1>
+      <div class="row">
+        <div class="logo-container col-sm-3">
+          <img id="logo" src="/Content/img/hair-logo.png" alt="A profile silhouette of a woman with hair blowing to the right" />
+        </div>
+        <div class="title-container col-sm-9">
+          <h1 id="banner-title">Salon Aether</h1>
+        </div>
+      </div>
     </div>
-    <div class="container-fluid container-no-padding">
+    <div class="container">
 
       @RenderBody()
 
