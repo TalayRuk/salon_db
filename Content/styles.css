@@ -32,6 +32,8 @@ body {
 
 .salon-input {
   border-radius: 0;
+  height: 50px;
+  font-size: 30px;
 }
 
 #logo {
