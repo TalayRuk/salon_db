@@ -17,12 +17,19 @@ _To install dependencies:_
 \>dnu restore
 
 _To use the database, in SQLCMD:_
+
 \>CREATE DATABASE hair_salon;
+
 \>GO
+
 \>USE hair_salon;
+
 \>GO
+
 \>CREATE TABLE stylists (id INT IDENTITY (1,1), first_name VARCHAR(255), last_name VARCHAR(255), expertise VARCHAR(255));
+
 \>CREATE TABLE clients (id INT IDENTITY (1,1), first_name VARCHAR(255), last_name VARCHAR(255), stylist_id INT);
+
 \>GO
 
 _To run the local server:_
