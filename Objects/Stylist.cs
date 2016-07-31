@@ -281,7 +281,6 @@ namespace Salon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      //DELETE CLIENTS AS WELL?
       SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
 
       SqlParameter stylistIdParameter = new SqlParameter();
