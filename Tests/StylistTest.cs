@@ -142,6 +142,7 @@ namespace Salon
       Client testClient = new Client("Shaggy", "Dew", testStylist.GetId());
       testClient.Save();
 
+      testStylist.DeleteStylistClients();
       testStylist.Delete();
 
       List<Client> result = Client.GetAll();

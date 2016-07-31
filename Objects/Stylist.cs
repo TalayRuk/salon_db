@@ -260,7 +260,6 @@ namespace Salon
       SqlConnection conn = DB.Connection();
       conn.Open();
 
-      //DELETE CLIENTS AS WELL?
       SqlCommand cmd = new SqlCommand("DELETE FROM stylists WHERE id = @StylistId;", conn);
 
       SqlParameter stylistIdParameter = new SqlParameter();
@@ -279,7 +278,24 @@ namespace Salon
 
     public void DeleteStylistClients()
     {
-      
+      SqlConnection conn = DB.Connection();
+      conn.Open();
+
+      //DELETE CLIENTS AS WELL?
+      SqlCommand cmd = new SqlCommand("DELETE FROM clients WHERE stylist_id = @StylistId;", conn);
+
+      SqlParameter stylistIdParameter = new SqlParameter();
+      stylistIdParameter.ParameterName = "@StylistId";
+      stylistIdParameter.Value = this.GetId();
+
+      cmd.Parameters.Add(stylistIdParameter);
+
+      cmd.ExecuteNonQuery();
+
+      if (conn != null)
+      {
+        conn.Close();
+      }
     }
 
     public static void DeleteAll()
