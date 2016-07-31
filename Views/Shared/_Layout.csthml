@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Playfair+Display' rel='stylesheet' type='text/css'>
+    <link href="/Content/styles.css" rel="stylesheet" type="text/css">
+    <title></title>
+  </head>
+  <body>
+    <div class="container-fluid container-banner">
+      <h1 id="banner-title">Salon Client Management</h1>
+    </div>
+    <div class="container-fluid container-no-padding">
+
+      @RenderBody()
+
+    </div>
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  </body>
+</html>
