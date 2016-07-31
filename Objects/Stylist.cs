@@ -277,6 +277,11 @@ namespace Salon
       }
     }
 
+    public void DeleteStylistClients()
+    {
+      
+    }
+
     public static void DeleteAll()
     {
       SqlConnection conn = DB.Connection();

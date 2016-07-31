@@ -15,6 +15,7 @@ namespace Salon
     public void Dispose()
     {
       Stylist.DeleteAll();
+      Client.DeleteAll();
     }
 
     [Fact]
@@ -132,5 +133,23 @@ namespace Salon
       Assert.Equal(testClients, result);
     }
 
+    [Fact]
+    public void T9_DeleteStylistClients_DeletesClientIfNoStylist()
+    {
+      Stylist testStylist = new Stylist("Clementine", "Clips", "L.4 Specialist");
+      testStylist.Save();
+
+      Client testClient = new Client("Shaggy", "Dew", testStylist.GetId());
+      testClient.Save();
+
+      testStylist.Delete();
+
+      List<Client> result = Client.GetAll();
+      int resultCount = result.Count;
+      List<Client> testClients = new List<Client> {};
+      int testCount = testClients.Count;
+
+      Assert.Equal(testCount, resultCount);
+    }
   }
 }
